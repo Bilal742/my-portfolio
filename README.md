@@ -1,12 +1,52 @@
-# React + Vite
+# 🌐 Personal Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is my **personal portfolio website**, designed and developed to showcase my skills, projects, and creative journey as a **Front-End Developer**.  
+It highlights my real-world work, interactive animations, and clean design — all built with passion and precision. 💻⚡
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎯 Purpose
+The goal of this project is to present my professional profile online and display all of my projects in one elegant, responsive, and easy-to-navigate interface.  
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🖥️ Sections Included
+- **🏠 Home:** Catchy hero section with smooth animations and introduction  
+- **💡 About:** Brief overview of who I am and what I do  
+- **🧠 Skills:** My technical stack including HTML, CSS, JavaScript, React, Tailwind CSS, and more  
+- **📂 Projects:** A showcase of my top projects with live demo and source code links  
+- **📞 Contact:** Contact form and direct links for easy communication  
+
+---
+
+## 🛠️ Technologies Used
+- **React JS** ⚛️  
+- **Tailwind CSS** 🎨  
+- **Framer Motion** ✨ (for smooth animations)  
+- **Responsive Design** (Mobile, Tablet, and Desktop friendly)  
+
+---
+
+## ✨ Features
+- Fully **responsive** across all devices  
+- **Animated sections** using Framer Motion  
+- Modern **UI/UX design** inspired by real-world portfolios  
+- **Dynamic project cards** with hover and transition effects  
+- Easy navigation with smooth scrolling  
+- **SEO optimized** meta tags  
+
+---
+
+## 🚀 Live Demo
+🔗 **[View Portfolio Website][https://imuhammadbilal.netlify.app/]**
+
+---
+
+## 📬 Contact
+**Muhammad Bilal**  
+📧 [bilalusman1291@gmail.com](mailto:bilalusman1291@gmail.com)  
+🐙 [GitHub Profile](https://github.com/Bilal742)  
+
+---
+
+⭐ **If you like this project, give it a star on GitHub!**
