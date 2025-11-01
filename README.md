@@ -45,7 +45,7 @@ The goal of this project is to present my professional profile online and displa
 ## 📬 Contact
 **Muhammad Bilal**  
 📧 [bilalusman1291@gmail.com](mailto:bilalusman1291@gmail.com)  
-🐙 [GitHub Profile](https://github.com/Bilal742)  
+🐙 [GitHub Profile][https://github.com/Bilal742]  
 
 ---
 
