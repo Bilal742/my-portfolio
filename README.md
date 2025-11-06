@@ -55,7 +55,7 @@ A simple and direct **contact section** featuring an email form and quick-access
 
 ## 🖼️ Preview
 
-![Luxury Villa Preview](./preview/Villa - Google Chrome 11_6_2025 8_49_11 AM.png)
+[./preview/Villa - Google Chrome 11_6_2025 8_49_11 AM.png]
 
 ---
 
