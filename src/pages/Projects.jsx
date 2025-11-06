@@ -23,7 +23,7 @@ export default function Projects() {
       description:
         "A modern and fully responsive Villa Booking website built with React, Tailwind CSS, and JavaScript — allowing users to explore, view details, and seamlessly book luxury villas.",
       img: bg2,
-      liveLink: "https://villa-website-v.vercel.app/",
+      liveLink: "https://ivilla.vercel.app/",
       sourceCode: "https://github.com/Bilal742/Villa-Website",
     },
     {
