@@ -69,12 +69,13 @@ export default function Home() {
           {/* Download CV Button */}
           <div className="mt-10">
             <a
-              href="/public/Resume — Muhammad Bilal.pdf" // public folder me file rakhi ho
+              href="/Resume-Muhammad-Bilal.pdf"
               download
               className="mt-4 w-[180px] p-3 bg-[#00EEFF] text-black font-bold rounded-lg shadow-lg hover:brightness-90 transition transform hover:scale-105 flex items-center gap-2 justify-center"
             >
-              <FaFileAlt /> Resume 
+              <FaFileAlt /> Resume
             </a>
+
           </div>
         </div>
 
