@@ -79,7 +79,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Image with Smooth Transition */}
+        {/* Image with Smooth Transition */}https://github.com/Bilal742/Muhammad-Bilal.git
         <div
           className="flex justify-center md:justify-end md:w-1/2"
           initial={{ opacity: 0, scale: 0.9 }}
