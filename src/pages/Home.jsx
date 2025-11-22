@@ -19,7 +19,7 @@ export default function Home() {
             Hey, I'm Bilal. <br />
             <span className="text-[#00EEFF]">
               <Typewriter
-                words={["I'm a Web Developer.", "I'm learning & growing."]}
+                words={["I'm a Frontend Developer.", "I'm learning & growing."]}
                 loop={true}
                 cursor
                 cursorStyle="_"
