@@ -15,7 +15,7 @@ It’s not just a portfolio — it’s a reflection of my growth and creativity 
 
 ### 🏠 Home  
 A modern **hero section** with smooth animations, introduction text, and an engaging call-to-action.
-
+  
 ### 💡 About  
 A short but meaningful overview of who I am, my goals, and my journey in front-end development.
 
