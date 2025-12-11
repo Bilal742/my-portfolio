@@ -69,7 +69,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden bg-[#1F232D] transition-all duration-800 ease-in-out overflow-hidden ${
+        className={`lg:hidden ${scrolled ? "shadow-md bg-[#141B2B]" : "bg-[#141B2B]"} transition-all duration-800 ease-in-out overflow-hidden ${
           mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
