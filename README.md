@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌐 Personal Portfolio Website
+   
+Welcome to my **Personal Portfolio Website**, designed and developed to showcase my journey as a **Front-End Developer**.  
+This website highlights my skills, creative projects, and coding passion — wrapped in a modern, animated, and responsive design. 💻⚡ 
+ 
+--- 
+    
+## 🎯 Purpose   
+The main goal of this portfolio is to **present my professional identity online** — displaying all of my work, technical expertise, and achievements in one elegant and interactive interface.  
+It’s not just a portfolio — it’s a reflection of my growth and creativity as a developer.      
+   
+---    
+ 
+## 🖥️ Sections Included
+ 
+### 🏠 Home  
+A modern **hero section** with smooth animations, introduction text, and an engaging call-to-action.
+  
+### 💡 About  
+A short but meaningful overview of who I am, my goals, and my journey in front-end development.
 
-## Getting Started
+### 🧠 Skills  
+A visually appealing showcase of my technical stack including:  
+**HTML**, **CSS**, **JavaScript**, **React**, **Tailwind CSS**, **Firebase**, and more.
 
-First, run the development server:
+### 📂 Projects  
+A dedicated section to highlight my **top real-world projects**, each with live demo and source code links.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 📞 Contact  
+A simple and direct **contact section** featuring an email form and quick-access social links.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Technologies Used
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Technology | Purpose |
+|-------------|----------|
+| **React.js** ⚛️ | For building the front-end structure and interactivity |
+| **Tailwind CSS** 🎨 | For modern, responsive, and utility-first styling |
+| **Framer Motion** ✨ | For elegant and smooth animations |
+| **Responsive Design** 📱 | To ensure perfect viewing experience across all devices |
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ✨ Key Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 🌍 Fully **responsive** on all screen sizes  
+- 🎬 **Animated sections** powered by Framer Motion  
+- 🧩 **Dynamic project cards** with hover and transition effects  
+- 🔗 Smooth and intuitive **navigation** with scroll animations  
+- 💡 Modern **UI/UX layout** inspired by top developer portfolios  
+- 🏷️ **SEO-optimized** with proper meta tags and structure  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🖼️ Preview
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+![Preview Image](./preview/imuhammadbilal.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🚀 Live Demo
+
+🔗 **Live Website:** [https://imuhammadbilal.vercel.app/](https://imuhammadbilal.vercel.app/)
+
+---
+
+## ⚙️ Setup Instructions
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/Bilal742/Muhammad-Bilal.git
+2. **Install Dependencies:**
+   ```bash
+   npm install
+3. **Run Locally:**
+   ```bash
+   npm run dev
+---
+
+## 📬 Contact
+
+👨‍💻 **Muhammad Bilal**  
+📧 [bilalusman1291@gmail.com](mailto:bilalusman1291@gmail.com)  
+🐙 [GitHub Profile](https://github.com/Bilal742)
+
+---
+
+⭐ **If you like this project, don’t forget to give it a star on GitHub!**
