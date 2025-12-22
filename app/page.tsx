@@ -69,9 +69,7 @@ const Page = () => {
 
   return (
     <div className="relative">
-      {showWelcome ? (
-        <WelcomeAnimation onComplete={() => setShowWelcome(false)} />
-      ) : (
+     
         <>
           <Home />
           <AboutComponent />
@@ -79,7 +77,7 @@ const Page = () => {
           <Projects preview />
           <Contact />
         </>
-      )}
+
     </div>
   );
 };
