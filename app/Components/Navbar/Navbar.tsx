@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 pt-6 pb-6 transition-all duration-700 ${
+      className={`fixed top-0 left-0 w-full z-50 pt-6 pb-6 transition-all duration-700 bg-black ${
         scrolled ? "shadow-md bg-[#000000]" : ""
       }`}
     //   [#181E2C]

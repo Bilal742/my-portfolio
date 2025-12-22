@@ -67,12 +67,12 @@ const Projects: React.FC = () => {
       liveLink: "https://amna-s-mehndi-studio.vercel.app/",
       sourceCode: "https://github.com/Bilal742/Amna-s-Mehndi-Studio",
     },
-  ]; 
+  ];
 
   return (
-    <section id="projects" className="py-16 text-white">
+    <section id="projects" className="py-40 md:py-40 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 uppercase">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 uppercase">
           My <span className="text-[#00EEFF]">Projects</span>
         </h2>
 

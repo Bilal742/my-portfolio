@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 const Home: React.FC = () => {
   return (
     <>
-      <div className="text-white flex flex-col-reverse md:flex-row items-center justify-between px-4 sm:px-10 md:px-20 lg:px-36 font-bold pt-20 md:pt-40 gap-10">
+      <div className="bg-black text-white flex flex-col-reverse md:flex-row items-center justify-between px-4 sm:px-10 md:px-20 lg:px-36 font-bold pt-20 md:pt-40 gap-10">
 
         {/* LEFT CONTENT */}
         <motion.div

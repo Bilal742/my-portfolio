@@ -18,8 +18,8 @@ export const metadata: Metadata = {
   title: "Muhammad Bilal - Frontend Developer",
   description: "Portfolio of Muhammad Bilal - React & TypeScript Developer",
   icons: {
-    icon: "/logo3.png",       
-    apple: "/apple-touch-icon.png",  
+    icon: "/logo3.png",
+    apple: "/apple-touch-icon.png",
     other: [
       { rel: "icon", url: "/favicon-32x32.png", sizes: "32x32" },
       { rel: "icon", url: "/favicon-16x16.png", sizes: "16x16" },
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: "Muhammad Bilal Portfolio",
     images: [
       {
-        url: "/og-image.png", 
+        url: "/og-image.png",
         width: 1200,
         height: 630,
       },
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     title: "Muhammad Bilal - Frontend Developer",
     description: "Portfolio of Muhammad Bilal - React & TypeScript Developer",
     images: ["/og-image.png"],
-  }, 
+  },
 };
 
 export default function RootLayout({
@@ -56,10 +56,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
       >
         <Navbar />
-        {children}
+          {children}
         <Footer />
       </body>
     </html>
