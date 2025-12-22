@@ -1,138 +1,223 @@
 "use client";
 
-import { useState, ChangeEvent, FormEvent } from "react";
-import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import toast, { Toaster } from "react-hot-toast";
+import emailjs from "emailjs-com";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle2,
+  AlertCircle,
+  Clock,
+} from "lucide-react";
 
-type FormData = {
-  name: string;
-  email: string;
-  message: string;
-};
+const initialForm = { name: "", email: "", phone: "", message: "" };
 
-const Contact: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    message: "",
-  });
+type FormType = typeof initialForm;
+type StatusType = "idle" | "loading" | "success" | "error";
 
-  const [loading, setLoading] = useState<boolean>(false);
+interface Status {
+  type: StatusType;
+  msg: string;
+}
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+interface FieldProps {
+  label: string;
+  name: keyof FormType;
+  value: string;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+  error?: string;
+  as?: "input" | "textarea";
+  rows?: number;
+}
+
+interface InfoCardProps {
+  icon: React.ReactNode;
+  title: string;
+  content: React.ReactNode;
+}
+
+function validate(values: FormType) {
+  const errors: Partial<FormType> = {};
+  if (!values.name.trim()) errors.name = "Name is required";
+  if (!values.email.trim()) errors.email = "Email is required";
+  else if (!/\S+@\S+\.\S+/.test(values.email)) errors.email = "Email is invalid";
+  if (!values.phone.trim()) errors.phone = "Phone is required";
+  if (!values.message.trim()) errors.message = "Message is required";
+  return errors;
+}
+
+export default function ContactSection() {
+  const now = new Date();
+  const days = [
+    "Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday",
+  ];
+
+  const [form, setForm] = useState<FormType>(initialForm);
+  const [errors, setErrors] = useState<Partial<FormType>>({});
+  const [status, setStatus] = useState<Status>({ type: "idle", msg: "" });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setForm((f) => ({ ...f, [name]: value }));
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.email || !formData.message) {
-      toast.error("⚠️ Please fill in all fields!");
+    const er = validate(form);
+    setErrors(er);
+
+    if (Object.keys(er).length) {
+      setStatus({ type: "error", msg: "Please fill all fields correctly." });
       return;
     }
 
-    if (!formData.email.includes("@")) {
-      toast.error("⚠️ Please enter a valid email address!");
-      return;
-    }
-
-    setLoading(true);
+    setStatus({ type: "loading", msg: "Sending message..." });
 
     try {
-      const res = await fetch("https://formly.email/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          access_key: "33ddeeb003524df885e14f93bc3c705b",
-          ...formData,
-        }),
-      });
+   const res = await emailjs.send(
+  "service_8pdhqni",      
+  "template_9lia5t3",   
+  {
+    name: form.name,
+    email: form.email,
+    phone: form.phone,
+    message: form.message,
+  },
+  "JiHighVl8JPVMaY3V"    
+);
 
-      if (res.ok) {
-        toast.success("✅ Message Sent Successfully!");
-        setFormData({ name: "", email: "", message: "" });
-      } else { 
-        toast.error("❌ Failed to send message. Try again!");
-      }
-    } catch (err) {
-      toast.error("⚠️ Something went wrong!");
+      console.log("EmailJS response:", res);
+
+      setStatus({ type: "success", msg: "Message sent successfully!" });
+      setForm(initialForm);
+    } catch (error: any) {
+      console.error("EmailJS error:", error);
+      let msg = "Email failed. Try again.";
+      if (error?.text) msg = error.text;
+      setStatus({ type: "error", msg });
     }
-
-    setLoading(false);
   };
 
   return (
-    <section id="contact" className="py-30 text-white">
-      <Toaster position="top-right" reverseOrder={false} />
-      <div className="max-w-6xl mx-auto px-1 lg:px-12">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-12 uppercase">
-          Contact <span className="text-[#00EEFF]">Me</span>
-        </h2>
+    <section className="relative overflow-hidden bg-black text-white">
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-20 left-20 h-72 w-72 bg-[#00EEFF]/20 blur-3xl rounded-full" />
+        <div className="absolute bottom-20 right-20 h-72 w-72 bg-[#00EEFF]/10 blur-3xl rounded-full" />
+      </div>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          <div className="space-y-6">
-            <h3 className="text-2xl font-semibold mb-4">Get in Touch</h3>
-            <p className="text-gray-300 leading-7">
-              Feel free to reach out to me for any project collaboration, web
-              development opportunities, or just to say hi!
-            </p>
+      <div className="mx-auto max-w-7xl px-4 py-24">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-14"
+        >
+          <h2 className="text-4xl font-extrabold">
+            Contact{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00EEFF] to-white">
+              Me
+            </span>
+          </h2>
+          <p className="mt-3 text-gray-400">
+            Let’s build something amazing together 🚀
+          </p>
+        </motion.div>
 
-            <div className="flex items-center space-x-4">
-              <FaEnvelope className="text-[#00EEFF] text-xl" />
-              <span className="text-gray-300">bilalusman1291@gmail.com</span>
-            </div>
-
-            <div className="flex items-center space-x-4">
-              <FaPhoneAlt className="text-[#00EEFF] text-xl" />
-              <span className="text-gray-300">+92 370 2675457</span>
-            </div>
-
-            <div className="flex items-center space-x-4">
-              <FaMapMarkerAlt className="text-[#00EEFF] text-xl" />
-              <span className="text-gray-300">Karachi, Pakistan</span>
-            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
+          <div className="lg:col-span-2 space-y-4">
+            <InfoCard icon={<Phone />} title="Phone" content="+92 123 456 7890" />
+            <InfoCard icon={<Mail />} title="Email" content="bilalusman1291@gmail.com" />
+            <InfoCard icon={<MapPin />} title="Location" content="Karachi, Pakistan" />
+            <InfoCard
+              icon={<Clock />}
+              title="Current Time"
+              content={`${days[now.getDay()]} • ${now.toLocaleTimeString()}`}
+            />
           </div>
 
-          <motion.div className="p-6 rounded-xl shadow-lg shadow-[#00EEFF]/20">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Your Name"
-                className="w-full p-3 rounded-lg border border-gray-700 text-white focus:outline-none focus:border-[#00EEFF]"
-              />
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Your Email"
-                className="w-full p-3 rounded-lg border border-gray-700 text-white focus:outline-none focus:border-[#00EEFF]"
-              />
-              <textarea
-                rows={4}
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Your Message"
-                className="w-full p-3 rounded-lg border border-gray-700 text-white focus:outline-none focus:border-[#00EEFF]"
-              ></textarea>
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full py-3 bg-[#00EEFF] text-black font-bold rounded-lg hover:bg-[#00cddb] transition duration-300 disabled:opacity-50"
-              >
-                {loading ? "Sending..." : "Send Message"}
-              </button>
-            </form>
-          </motion.div>
+          <div className="lg:col-span-3">
+            <div className="rounded-2xl border border-gray-800 bg-black/80 p-6 backdrop-blur">
+              {status.type !== "idle" && (
+                <div
+                  className={`mb-4 flex items-center gap-2 rounded-xl border p-3 text-sm ${
+                    status.type === "success"
+                      ? "border-green-400 bg-green-900/20"
+                      : "border-red-500 bg-red-900/20"
+                  }`}
+                >
+                  {status.type === "success" ? <CheckCircle2 /> : <AlertCircle />}
+                  {status.msg}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <Field label="Name" name="name" value={form.name} onChange={handleChange} error={errors.name} />
+                  <Field label="Email" name="email" value={form.email} onChange={handleChange} error={errors.email} />
+                </div>
+
+                <Field label="Phone" name="phone" value={form.phone} onChange={handleChange} error={errors.phone} />
+
+                <Field
+                  label="Message"
+                  name="message"
+                  as="textarea"
+                  rows={5}
+                  value={form.message}
+                  onChange={handleChange}
+                  error={errors.message}
+                />
+
+                <button
+                  type="submit"
+                  disabled={status.type === "loading"}
+                  className="w-full rounded-xl bg-[#00EEFF] text-black py-3 font-semibold hover:shadow-[0_0_20px_#00EEFF] transition"
+                >
+                  <Send className="inline mr-2" />
+                  {status.type === "loading" ? "Sending..." : "Send Message"}
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
-};
+}
 
-export default Contact;
+function Field({ label, name, value, onChange, error, as = "input", rows = 4 }: FieldProps) {
+  const Tag = as;
+  return (
+    <div>
+      <label className="block text-sm mb-1">{label}</label>
+      <Tag
+        name={name}
+        value={value}
+        onChange={onChange}
+        rows={as === "textarea" ? rows : undefined}
+        className={`w-full rounded-xl bg-black border px-4 py-3 text-white outline-none focus:ring-2 focus:ring-[#00EEFF]
+        ${error ? "border-red-500" : "border-gray-700"}`}
+      />
+      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+    </div>
+  );
+}
+
+function InfoCard({ icon, title, content }: InfoCardProps) {
+  return (
+    <div className="flex gap-3 items-center rounded-xl border border-gray-800 bg-black/70 p-4">
+      <div className="text-[#00EEFF]">{icon}</div>
+      <div>
+        <p className="font-semibold">{title}</p>
+        <p className="text-gray-400 text-sm">{content}</p>
+      </div>
+    </div>
+  );
+}
