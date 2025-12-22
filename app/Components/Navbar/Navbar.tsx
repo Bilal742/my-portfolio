@@ -30,19 +30,16 @@ const Navbar: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 pt-6 pb-6 transition-all duration-700 bg-black ${
-        scrolled ? "shadow-md bg-[#000000]" : ""
-      }`}
+      className={`fixed top-0 left-0 w-full z-50 pt-6 pb-6 transition-all duration-700 bg-black ${scrolled ? "shadow-md bg-[#000000]" : ""
+        }`}
     //   [#181E2C]
     >
       <div className="px-6 md:px-24 container mx-auto flex flex-wrap items-center justify-between">
-        
-        {/* Logo */}
+
         <span className="text-xl md:text-2xl uppercase font-bold tracking-[2px] text-white">
           Muhammad Bilal
         </span>
- 
-        {/* Desktop Nav */}
+
         <nav className="hidden lg:flex lg:ml-auto text-base">
           {links.map((link) => (
             <a
@@ -57,7 +54,6 @@ const Navbar: React.FC = () => {
           ))}
         </nav>
 
-        {/* Mobile Hamburger */}
         <button
           onClick={() => setMobileOpen((prev) => !prev)}
           className="relative w-8 h-8 flex flex-col justify-between items-center lg:hidden focus:outline-none"
@@ -78,11 +74,9 @@ const Navbar: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       <div
-        className={`lg:hidden bg-[#141B2B] transition-all duration-800 ease-in-out overflow-hidden ${
-          mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        } ${scrolled ? "shadow-md" : ""}`}
+        className={`lg:hidden bg-[#141B2B] transition-all duration-800 ease-in-out overflow-hidden ${mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          } ${scrolled ? "shadow-md" : ""}`}
       >
         <nav className="flex flex-col items-center justify-center space-y-6 py-6">
           {links.map((link) => (

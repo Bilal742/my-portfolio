@@ -7,7 +7,6 @@ import Skills from "./Components/Skill/Skill";
 import Projects from "./Components/Project/Project";
 import Contact from "./Components/Contact/Contact";
 
-// Animated typing text component
 const AnimatedText: React.FC<{ text: string; speed?: number; className?: string }> = ({
   text,
   speed = 50,
@@ -38,7 +37,7 @@ function WelcomeAnimation({ onComplete }: { onComplete?: () => void }) {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (onComplete) onComplete();
-    }, 4000); // animation duration
+    }, 4000);
     return () => clearTimeout(timer);
   }, [onComplete]);
 
