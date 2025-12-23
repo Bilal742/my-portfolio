@@ -25,7 +25,6 @@ export default function ContactSection() {
   const [success, setSuccess] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
 
-  // Live clock
   useEffect(() => {
     const interval = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(interval);
@@ -93,7 +92,6 @@ export default function ContactSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-          {/* INFO */}
           <div className="lg:col-span-2 space-y-4">
             <InfoCard icon={<Phone />} title="Phone" content="+92 123 456 7890" />
             <InfoCard icon={<Mail />} title="Email" content="bilalusman1291@gmail.com" />
@@ -104,8 +102,7 @@ export default function ContactSection() {
               content={`${days[currentTime.getDay()]} • ${currentTime.toLocaleTimeString()}`}
             />
           </div>
-
-          {/* FORM */}
+          
           <div className="lg:col-span-3">
             <div className="rounded-2xl border border-gray-800 bg-black/80 p-6">
               {success && (
