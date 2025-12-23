@@ -1,15 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  CheckCircle2,
-  Clock,
-} from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle2, Clock } from "lucide-react";
 
 type FormType = {
   name: string;
@@ -26,25 +19,21 @@ const initialForm: FormType = {
 };
 
 export default function ContactSection() {
-  const now = new Date();
-  const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
   const [form, setForm] = useState<FormType>(initialForm);
   const [errors, setErrors] = useState<Partial<FormType>>({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  // Live clock
+  useEffect(() => {
+    const interval = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setForm((f) => ({ ...f, [name]: value }));
   };
@@ -60,7 +49,6 @@ export default function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     const er = validate(form);
     setErrors(er);
     if (Object.keys(er).length) return;
@@ -72,7 +60,7 @@ export default function ContactSection() {
       const res = await fetch("https://formspree.io/f/mlgrzwyr", {
         method: "POST",
         headers: {
-          "Accept": "application/json",
+          Accept: "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify(form),
@@ -94,40 +82,26 @@ export default function ContactSection() {
   return (
     <section className="relative overflow-hidden bg-black text-white">
       <div className="mx-auto max-w-7xl px-4 py-24">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-14"
-        >
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-14">
           <h2 className="text-4xl font-extrabold">
             Contact{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00EEFF] to-white">
               Me
             </span>
           </h2>
-          <p className="mt-3 text-gray-400">
-            Let’s build something amazing together 🚀
-          </p>
+          <p className="mt-3 text-gray-400">Let’s build something amazing together 🚀</p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
           {/* INFO */}
           <div className="lg:col-span-2 space-y-4">
             <InfoCard icon={<Phone />} title="Phone" content="+92 123 456 7890" />
-            <InfoCard
-              icon={<Mail />}
-              title="Email"
-              content="bilalusman1291@gmail.com"
-            />
-            <InfoCard
-              icon={<MapPin />}
-              title="Location"
-              content="Karachi, Pakistan"
-            />
+            <InfoCard icon={<Mail />} title="Email" content="bilalusman1291@gmail.com" />
+            <InfoCard icon={<MapPin />} title="Location" content="Karachi, Pakistan" />
             <InfoCard
               icon={<Clock />}
               title="Current Time"
-              content={`${days[now.getDay()]} • ${now.toLocaleTimeString()}`}
+              content={`${days[currentTime.getDay()]} • ${currentTime.toLocaleTimeString()}`}
             />
           </div>
 
@@ -179,16 +153,17 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={loading}
+                  aria-busy={loading}
                   className={`w-full rounded-xl py-3 font-semibold transition
-                  ${loading
-                      ? "bg-[#00EEFF]/60 text-black cursor-not-allowed"
-                      : "bg-[#00EEFF] text-black hover:shadow-[0_0_20px_#00EEFF] cursor-pointer"
+                    ${
+                      loading
+                        ? "bg-[#00EEFF]/60 text-black cursor-not-allowed"
+                        : "bg-[#00EEFF] text-black hover:shadow-[0_0_20px_#00EEFF] cursor-pointer"
                     }`}
                 >
                   <Send className="inline mr-2" />
                   {loading ? "Sending..." : "Send Message"}
                 </button>
-
               </form>
             </div>
           </div>
@@ -210,28 +185,39 @@ function Field({
   label: string;
   name: string;
   value: string;
-  onChange: any;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   error?: string;
   as?: "input" | "textarea";
   rows?: number;
 }) {
-  const Tag: any = as;
+  const Tag = as === "textarea" ? "textarea" : "input";
+
   return (
     <div>
-      <label className="block text-sm mb-1">{label}</label>
+      <label className="block text-sm mb-1" htmlFor={name}>
+        {label}
+      </label>
       <Tag
+        id={name}
         name={name}
         value={value}
         onChange={onChange}
         rows={as === "textarea" ? rows : undefined}
+        aria-invalid={!!error}
+        aria-describedby={error ? `${name}-error` : undefined}
         className={`w-full rounded-xl bg-black border px-4 py-3 outline-none
-        ${error ? "border-red-500" : "border-gray-700"}
-        focus:ring-2 focus:ring-[#00EEFF]`}
+          ${error ? "border-red-500" : "border-gray-700"}
+          focus:ring-2 focus:ring-[#00EEFF]`}
       />
-      {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+      {error && (
+        <p id={`${name}-error`} className="text-red-500 text-xs mt-1">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
+
 function InfoCard({
   icon,
   title,
@@ -253,7 +239,7 @@ function InfoCard({
         </div>
       </div>
 
-      {mapSrc ? (
+      {mapSrc && (
         <iframe
           title="Google Map"
           className="mt-4 w-full h-56 rounded-lg border border-gray-800"
@@ -261,7 +247,7 @@ function InfoCard({
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />
-      ) : null}
+      )}
     </div>
   );
 }
