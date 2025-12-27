@@ -39,7 +39,7 @@ const Home: React.FC = () => {
 
           <div className="mt-6 flex items-center justify-center md:justify-start gap-4">
             <a
-              href="https://www.facebook.com/your-facebook"
+              href="https://www.facebook.com/profile.php?id=61585744792810"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#00EEFF] text-xl p-3 border-2 border-[#00EEFF] rounded-full hover:scale-110 transition shadow-lg"
